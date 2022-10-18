@@ -1,0 +1,653 @@
+fileFormatVersion: 2
+guid: 703a98e36ac6c764b90c7b56da4b62f4
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Arm_L
+    100002: Arm_R
+    100004: ArmRoll_L
+    100006: ArmRoll_R
+    100008: Chest
+    100010: ClothesBack1
+    100012: ClothesBack2
+    100014: ClothesFront1_L
+    100016: ClothesFront1_R
+    100018: ClothesFront2_L
+    100020: ClothesFront2_R
+    100022: ClothesSide1_L
+    100024: ClothesSide1_R
+    100026: ClothesSide2_L
+    100028: ClothesSide2_R
+    100030: Eyebrows_L
+    100032: Eyebrows_R
+    100034: EyebrowsInside_L
+    100036: EyebrowsInside_R
+    100038: EyebrowsOuter_L
+    100040: EyebrowsOuter_R
+    100042: Facial
+    100044: Foot_L
+    100046: Foot_R
+    100048: Forearm_L
+    100050: Forearm_R
+    100052: Forearm_Roll_L
+    100054: Forearm_Roll_R
+    100056: Forearm_Sleeve_L
+    100058: Forearm_Sleeve_R
+    100060: Goggles 1
+    100062: HairBackA
+    100064: HairBackB
+    100066: HairBackC
+    100068: HairCenterA
+    100070: HairFront_Down
+    100072: HairFront_Down2
+    100074: HairFront_Up
+    100076: HairFrontA
+    100078: HairSideA
+    100080: HairSideB
+    100082: HairSideC
+    100084: HairSideD
+    100086: HairSideE
+    100088: HairSideF
+    100090: HairSideG
+    100092: HairSideH
+    100094: Hand_L
+    100096: Hand_R
+    100098: Head
+    100100: Hips
+    100102: Hood
+    100104: Index1_L
+    100106: Index1_R
+    100108: Index2_L
+    100110: Index2_R
+    100112: Index3_L
+    100114: Index3_R
+    100116: Jaw
+    100118: Knee2_L
+    100120: Knee2_R
+    100122: Knee_L
+    100124: Knee_R
+    100126: LowerLip
+    100128: LowerLip_L
+    100130: LowerLip_R
+    100132: LowerTooth
+    100134: Middle1_L
+    100136: Middle1_R
+    100138: Middle2_L
+    100140: Middle2_R
+    100142: Middle3_L
+    100144: Middle3_R
+    100146: MouthCorner_L
+    100148: MouthCorner_R
+    100150: Neck
+    100152: pants_L
+    100154: pants_R
+    100156: //RootNode
+    100158: Pinky1_L
+    100160: Pinky1_R
+    100162: Pinky2_L
+    100164: Pinky2_R
+    100166: Pinky3_L
+    100168: Pinky3_R
+    100170: Prop_L
+    100172: Prop_R
+    100174: RightArmor
+    100176: Ring1_L
+    100178: Ring1_R
+    100180: Ring2_L
+    100182: Ring2_R
+    100184: Ring3_L
+    100186: Ring3_R
+    100188: Root
+    100190: ShoesPart_L
+    100192: ShoesPart_R
+    100194: Shoulder_L
+    100196: Shoulder_R
+    100198: Spine
+    100200: string1_L
+    100202: string1_R
+    100204: string2_L
+    100206: string2_R
+    100208: Thigh_L
+    100210: Thigh_R
+    100212: Thumb1_L
+    100214: Thumb1_R
+    100216: Thumb2_L
+    100218: Thumb2_R
+    100220: Thumb3_L
+    100222: Thumb3_R
+    100224: Toe_L
+    100226: Toe_R
+    100228: Tshirt_F
+    100230: Tshirt_L
+    100232: Tshirt_R
+    100234: TshirtBack_F
+    100236: TshirtBack_L
+    100238: TshirtBack_R
+    100240: UpperLip
+    100242: UpperLip_L
+    100244: UpperLip_R
+    100246: UpperTooth
+    100248: Goggles
+    100250: ClothesBack3
+    100252: ClothesFront3_L
+    100254: ClothesFront3_R
+    100256: ClothesSide3_L
+    100258: ClothesSide3_R
+    100260: P_Hood1
+    100262: P_Hood2
+    100264: P_ShoesPart1_L
+    100266: P_ShoesPart1_R
+    100268: P_ShoesPart2_L
+    100270: P_ShoesPart2_R
+    400000: Arm_L
+    400002: Arm_R
+    400004: ArmRoll_L
+    400006: ArmRoll_R
+    400008: Chest
+    400010: ClothesBack1
+    400012: ClothesBack2
+    400014: ClothesFront1_L
+    400016: ClothesFront1_R
+    400018: ClothesFront2_L
+    400020: ClothesFront2_R
+    400022: ClothesSide1_L
+    400024: ClothesSide1_R
+    400026: ClothesSide2_L
+    400028: ClothesSide2_R
+    400030: Eyebrows_L
+    400032: Eyebrows_R
+    400034: EyebrowsInside_L
+    400036: EyebrowsInside_R
+    400038: EyebrowsOuter_L
+    400040: EyebrowsOuter_R
+    400042: Facial
+    400044: Foot_L
+    400046: Foot_R
+    400048: Forearm_L
+    400050: Forearm_R
+    400052: Forearm_Roll_L
+    400054: Forearm_Roll_R
+    400056: Forearm_Sleeve_L
+    400058: Forearm_Sleeve_R
+    400060: Goggles 1
+    400062: HairBackA
+    400064: HairBackB
+    400066: HairBackC
+    400068: HairCenterA
+    400070: HairFront_Down
+    400072: HairFront_Down2
+    400074: HairFront_Up
+    400076: HairFrontA
+    400078: HairSideA
+    400080: HairSideB
+    400082: HairSideC
+    400084: HairSideD
+    400086: HairSideE
+    400088: HairSideF
+    400090: HairSideG
+    400092: HairSideH
+    400094: Hand_L
+    400096: Hand_R
+    400098: Head
+    400100: Hips
+    400102: Hood
+    400104: Index1_L
+    400106: Index1_R
+    400108: Index2_L
+    400110: Index2_R
+    400112: Index3_L
+    400114: Index3_R
+    400116: Jaw
+    400118: Knee2_L
+    400120: Knee2_R
+    400122: Knee_L
+    400124: Knee_R
+    400126: LowerLip
+    400128: LowerLip_L
+    400130: LowerLip_R
+    400132: LowerTooth
+    400134: Middle1_L
+    400136: Middle1_R
+    400138: Middle2_L
+    400140: Middle2_R
+    400142: Middle3_L
+    400144: Middle3_R
+    400146: MouthCorner_L
+    400148: MouthCorner_R
+    400150: Neck
+    400152: pants_L
+    400154: pants_R
+    400156: //RootNode
+    400158: Pinky1_L
+    400160: Pinky1_R
+    400162: Pinky2_L
+    400164: Pinky2_R
+    400166: Pinky3_L
+    400168: Pinky3_R
+    400170: Prop_L
+    400172: Prop_R
+    400174: RightArmor
+    400176: Ring1_L
+    400178: Ring1_R
+    400180: Ring2_L
+    400182: Ring2_R
+    400184: Ring3_L
+    400186: Ring3_R
+    400188: Root
+    400190: ShoesPart_L
+    400192: ShoesPart_R
+    400194: Shoulder_L
+    400196: Shoulder_R
+    400198: Spine
+    400200: string1_L
+    400202: string1_R
+    400204: string2_L
+    400206: string2_R
+    400208: Thigh_L
+    400210: Thigh_R
+    400212: Thumb1_L
+    400214: Thumb1_R
+    400216: Thumb2_L
+    400218: Thumb2_R
+    400220: Thumb3_L
+    400222: Thumb3_R
+    400224: Toe_L
+    400226: Toe_R
+    400228: Tshirt_F
+    400230: Tshirt_L
+    400232: Tshirt_R
+    400234: TshirtBack_F
+    400236: TshirtBack_L
+    400238: TshirtBack_R
+    400240: UpperLip
+    400242: UpperLip_L
+    400244: UpperLip_R
+    400246: UpperTooth
+    400248: Goggles
+    400250: ClothesBack3
+    400252: ClothesFront3_L
+    400254: ClothesFront3_R
+    400256: ClothesSide3_L
+    400258: ClothesSide3_R
+    400260: P_Hood1
+    400262: P_Hood2
+    400264: P_ShoesPart1_L
+    400266: P_ShoesPart1_R
+    400268: P_ShoesPart2_L
+    400270: P_ShoesPart2_R
+    7400000: Take 001
+    7400002: pc_an_001_01_811
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 0
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: pc_an_001_01_811
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 130
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 0100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Hips
+        weight: 1
+      - path: Root/Hips/Spine
+        weight: 1
+      - path: Root/Hips/Spine/Chest
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesBack1
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesBack1/ClothesBack2
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesBack1/ClothesBack2/ClothesBack3
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesFront1_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesFront1_L/ClothesFront2_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesFront1_L/ClothesFront2_L/ClothesFront3_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesFront1_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesFront1_R/ClothesFront2_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesFront1_R/ClothesFront2_R/ClothesFront3_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesSide1_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesSide1_L/ClothesSide2_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesSide1_L/ClothesSide2_L/ClothesSide3_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesSide1_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesSide1_R/ClothesSide2_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/ClothesSide1_R/ClothesSide2_R/ClothesSide3_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/Eyebrows_L
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/Eyebrows_L/EyebrowsInside_L
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/Eyebrows_L/EyebrowsOuter_L
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/Eyebrows_R
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/Eyebrows_R/EyebrowsInside_R
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/Eyebrows_R/EyebrowsOuter_R
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/Facial
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/Goggles
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairBackA
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairBackB
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairBackC
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairCenterA
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairFront_Down
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairFront_Down/HairFront_Down2
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairFront_Up
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairFrontA
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairSideA
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairSideB
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairSideC
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairSideD
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairSideE
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairSideF
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairSideG
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/HairSideH
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Neck/Head/Jaw
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/Jaw/LowerLip
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/Jaw/LowerLip_L
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/Jaw/LowerLip_R
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/Jaw/LowerTooth
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/MouthCorner_L
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/MouthCorner_R
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/UpperLip
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/UpperLip_L
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/UpperLip_R
+        weight: 0
+      - path: Root/Hips/Spine/Chest/Neck/Head/UpperTooth
+        weight: 0
+      - path: Root/Hips/Spine/Chest/P_Hood1
+        weight: 1
+      - path: Root/Hips/Spine/Chest/P_Hood1/P_Hood2
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/ArmRoll_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Forearm_Roll_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Forearm_Sleeve_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Index1_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Index1_L/Index2_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Index1_L/Index2_L/Index3_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Middle1_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Middle1_L/Middle2_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Middle1_L/Middle2_L/Middle3_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Pinky1_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Pinky1_L/Pinky2_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Pinky1_L/Pinky2_L/Pinky3_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Prop_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Ring1_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Ring1_L/Ring2_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Ring1_L/Ring2_L/Ring3_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Thumb1_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Thumb1_L/Thumb2_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_L/Arm_L/Forearm_L/Hand_L/Thumb1_L/Thumb2_L/Thumb3_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/ArmRoll_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Forearm_Roll_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Forearm_Sleeve_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Index1_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Index1_R/Index2_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Index1_R/Index2_R/Index3_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Middle1_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Middle1_R/Middle2_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Middle1_R/Middle2_R/Middle3_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Pinky1_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Pinky1_R/Pinky2_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Pinky1_R/Pinky2_R/Pinky3_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Prop_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Ring1_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Ring1_R/Ring2_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Ring1_R/Ring2_R/Ring3_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Thumb1_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Thumb1_R/Thumb2_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/Shoulder_R/Arm_R/Forearm_R/Hand_R/Thumb1_R/Thumb2_R/Thumb3_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/string1_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/string1_L/string2_L
+        weight: 1
+      - path: Root/Hips/Spine/Chest/string1_R
+        weight: 1
+      - path: Root/Hips/Spine/Chest/string1_R/string2_R
+        weight: 1
+      - path: Root/Hips/Thigh_L
+        weight: 1
+      - path: Root/Hips/Thigh_L/Knee_L
+        weight: 1
+      - path: Root/Hips/Thigh_L/Knee_L/Foot_L
+        weight: 1
+      - path: Root/Hips/Thigh_L/Knee_L/Foot_L/P_ShoesPart1_L
+        weight: 1
+      - path: Root/Hips/Thigh_L/Knee_L/Foot_L/P_ShoesPart1_L/P_ShoesPart2_L
+        weight: 1
+      - path: Root/Hips/Thigh_L/Knee_L/Foot_L/Toe_L
+        weight: 1
+      - path: Root/Hips/Thigh_L/Knee_L/Knee2_L
+        weight: 1
+      - path: Root/Hips/Thigh_R
+        weight: 1
+      - path: Root/Hips/Thigh_R/Knee_R
+        weight: 1
+      - path: Root/Hips/Thigh_R/Knee_R/Foot_R
+        weight: 1
+      - path: Root/Hips/Thigh_R/Knee_R/Foot_R/P_ShoesPart1_R
+        weight: 1
+      - path: Root/Hips/Thigh_R/Knee_R/Foot_R/P_ShoesPart1_R/P_ShoesPart2_R
+        weight: 1
+      - path: Root/Hips/Thigh_R/Knee_R/Foot_R/Toe_R
+        weight: 1
+      - path: Root/Hips/Thigh_R/Knee_R/Knee2_R
+        weight: 1
+      - path: Root/Hips/Tshirt_F
+        weight: 1
+      - path: Root/Hips/Tshirt_L
+        weight: 1
+      - path: Root/Hips/Tshirt_R
+        weight: 1
+      - path: Root/Hips/TshirtBack_F
+        weight: 1
+      - path: Root/Hips/TshirtBack_L
+        weight: 1
+      - path: Root/Hips/TshirtBack_R
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 6f41a038252f4b649bc55bc80ece2508,
+    type: 3}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

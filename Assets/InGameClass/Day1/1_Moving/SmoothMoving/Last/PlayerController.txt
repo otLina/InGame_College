@@ -1,0 +1,391 @@
+using UnityEngine;
+using UnityEngine.UI;
+using System;
+
+namespace MovingAnswer
+{
+    public class PlayerController : MonoBehaviour
+    {
+        #region Definitions
+        private static readonly int IS_MOVE_HASH = Animator.StringToHash("IsMove");
+
+        private enum CameraModeType
+        {
+            Default,
+            LookItem,
+        }
+        #endregion // Definitions
+
+        #region Variables Move
+        [SerializeField]
+        private Animator _animator;
+
+        [SerializeField]
+        private Transform _camera;
+
+        [SerializeField]
+        private Terrain _terrain;
+
+        [SerializeField]
+        private bool _isConstantSlopeSpeed = false;
+
+        [SerializeField]
+        private bool _isRaycast;               // レイキャストを使用するか
+
+        private Vector3 _rayOffset = new Vector3(0.0f, 5f, 0.0f); // 始点の位置
+        private float _radius = 0.1f;           // レイの半径
+
+        private float _rayDistance = 10.0f;     // レイの長さ
+        private int _layerMask = 1 << 8;        // 衝突検知するレイヤーマスク
+
+        private float _lastRaycastTime = 0.0f;  // 最後にレイキャストした時間
+        private float _intervalRaycast = 0.1f;  // レイキャストをする間隔
+
+        private float _lastHitPositionY;        // 最後にレイキャストした時の高さ
+
+        [SerializeField]
+        private float _speed = 3f;
+
+        [SerializeField]
+        private float _rollSpeed = 360f;
+
+        #endregion //  Variables Move
+
+        #region Variables Camera
+        [SerializeField]
+        private CameraManager _cameraMgr;
+
+        private CameraModeType _cameraModeType;
+
+        private CameraManager.Parameter _defaultCamParam;
+
+        [SerializeField]
+        private CameraManager.Parameter _itemCamParam;
+
+        [SerializeField]
+        private CameraManager.Parameter _aimCamParam;
+
+        [SerializeField]
+        private bool _useMouseRoll;
+
+        [SerializeField]
+        private bool _isCursorLock = false;
+
+        #endregion // Variables Camera
+
+        private void Awake()
+        {
+            // フレームレートを60fpsに設定
+            Application.targetFrameRate = 60;
+
+            // カーソルを非表示にするか?
+            if (_isCursorLock)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+
+            _defaultCamParam = _cameraMgr.Param.Clone();
+        }
+
+        private void Start()
+        {
+            _lastHitPositionY = transform.position.y;
+        }
+
+        private void Update()
+        {
+            ControlMove();
+            ControlCamera();
+        }
+
+        #region Methods Move
+        private Vector3 GetMoveVector()
+        {
+            Vector3 moveVector = Vector3.zero;
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+            {
+                moveVector += Vector3.forward;
+            }
+            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+            {
+                moveVector += Vector3.back;
+            }
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+            {
+                moveVector += Vector3.left;
+            }
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+            {
+                moveVector += Vector3.right;
+            }
+            Quaternion cameraRotate = Quaternion.Euler(
+                0f, 
+                _cameraMgr.CameraTransform.eulerAngles.y,
+                0f);
+            return cameraRotate * moveVector.normalized;
+        }
+
+        private void ControlMove()
+        {
+            Vector3 moveVector = GetMoveVector();
+            bool isMove = moveVector != Vector3.zero;
+
+            if (_animator != null)
+            {
+                _animator.SetBool(IS_MOVE_HASH, isMove);
+            }
+
+            // レイキャスト利用時は毎フレーム高さの調整が必要
+            if (_isRaycast)
+            {
+                Vector3 position = transform.position;
+                position.y = Mathf.Lerp(
+                                    position.y,
+                                    _lastHitPositionY,
+                                    Time.deltaTime * 10);
+                transform.position = position;
+            }
+
+            if (isMove)
+            {
+                // テレインによる高さ合わせ
+                if (_terrain != null)
+                {
+                    // 斜面の移動速度調整
+                    if (_isConstantSlopeSpeed)
+                    {
+                        // 斜面でも移動速度を一定にする
+                        ConstantSlopeSpeed(moveVector);
+                    } else
+                    {
+                        // 斜面の移動速度の調整はしない
+                        MatchHeightByTerrain(moveVector);
+                    }
+                }
+
+                // レイキャストによる高さ合わせ
+                if (_isRaycast)
+                {
+                    // 斜面の移動速度調整
+                    if (_isConstantSlopeSpeed)
+                    {
+                        // 斜面でも移動速度を一定にする
+                        ConstantSlopeSpeedforRaycast(moveVector);
+                    }
+                    else
+                    {
+                        // 斜面の移動速度の調整はしない
+                        MatchHeightByRaycast(moveVector);
+                    }
+                }
+
+                Quaternion lookRotation = Quaternion.LookRotation(
+                            new Vector3(moveVector.x, 0f, moveVector.z));
+                transform.rotation = Quaternion.RotateTowards(
+                    transform.rotation,
+                    lookRotation, Time.deltaTime * _rollSpeed);
+            }
+        }
+
+        /// <summary>
+        /// 斜面でも移動速度を一定にする。
+        /// 
+        /// 現在座標と目標座標のベクトルの差を求めて
+        /// 差分ベクトルの長さを移動速度に合わせて調整
+        /// </summary>
+        /// <param name="moveVector"></param>
+        private void ConstantSlopeSpeedforRaycast(Vector3 moveVector)
+        {
+            // 移動前の位置を保存
+            Vector3 currentPosition = transform.position;
+
+            // 目標座標を求める
+            Vector3 moveDelta;
+            moveDelta = moveVector * Time.deltaTime * _speed;
+            Vector3 targetPosition = currentPosition + moveDelta;
+            targetPosition.y = Mathf.Lerp(
+                                    currentPosition.y, 
+                                    _lastHitPositionY, 
+                                    Time.deltaTime * 10);
+
+            // 目標座標から現在座標のベクトルの差を求める
+            moveDelta = targetPosition - currentPosition;
+
+            // normalizeして、1フレーム当たりのベクトルを求める
+            moveDelta = moveDelta.normalized * Time.deltaTime * _speed;
+
+            // 目標の高さを補正
+            _lastHitPositionY -= moveDelta.y;
+
+            // ここでは高さの移動は行わない
+            moveDelta.y = 0;
+            transform.position += moveDelta;    // 移動する
+
+            // 一定時間(_IntervalRaycast)の間隔をあけてレイキャストする
+            if (Time.time < _lastRaycastTime + _intervalRaycast)
+                return;
+
+            // 最終レイキャスト時間を記録
+            _lastRaycastTime = Time.time;
+
+            // レイの始点と方向を決める
+            Vector3 rayPosition = transform.position + _rayOffset;
+            Ray ray = new Ray(rayPosition, Vector3.down);
+
+            RaycastHit hit;
+            bool isHit = Physics.SphereCast(
+                                ray,         // レイの始点と方向
+                                _radius,     // 半径
+                                out hit,     // 衝突判定結果
+                                _rayDistance,// レイの長さ
+                                _layerMask); // レイヤーマスク
+
+            // レイの衝突を検出
+            if (isHit)
+            {
+                // レイの衝突時の高さを保存
+                _lastHitPositionY = hit.point.y;
+            }
+        }
+
+        /// <summary>
+        /// 斜面でも移動速度を一定にする。
+        /// 
+        /// 現在座標と目標座標のベクトルの差を求めて
+        /// 差分ベクトルの長さを移動速度に合わせて調整
+        /// </summary>
+        /// <param name="moveVector"></param>
+        private void ConstantSlopeSpeed(Vector3 moveVector)
+        {
+            // 移動前の位置を保存
+            Vector3 currentPosition = transform.position;
+
+            // 目標座標を求め、テレイン上の高さを取得
+            Vector3 moveDelta;
+            moveDelta = moveVector * Time.deltaTime * _speed;
+            Vector3 targetPosition = currentPosition + moveDelta;
+            targetPosition.y = _terrain.SampleHeight(targetPosition);
+
+            // 目標座標から現在座標のベクトルの差を求めて
+            // normalizeして、1フレーム当たりのベクトルを求める
+            moveDelta = targetPosition - currentPosition;
+            moveDelta = moveDelta.normalized * Time.deltaTime * _speed;
+
+            // 求めたベクトルを加算する
+            transform.position += moveDelta;
+        }
+
+        /// <summary>
+        /// テレインに沿って高さを合わせる
+        /// </summary>
+        /// <param name="moveVector"></param>
+        void MatchHeightByTerrain(Vector3 moveVector)
+        {
+            // 移動処理
+            Vector3 moveDelta;
+            moveDelta = moveVector * Time.deltaTime * _speed;
+            transform.position += moveDelta;
+
+            // 高さ合わせ
+            Vector3 currentPosition = transform.position;
+            currentPosition.y = _terrain.SampleHeight(currentPosition);
+            transform.position = currentPosition;
+        }
+
+        /// <summary>
+        /// レイキャストによる高さ合わせ
+        /// </summary>
+        /// <param name="moveVector"></param>
+        void MatchHeightByRaycast(Vector3 moveVector)
+        {
+            // 移動処理
+            Vector3 moveDelta;
+            moveDelta = moveVector * Time.deltaTime * _speed;
+            transform.position += moveDelta;
+
+            // 一定時間(_IntervalRaycast)の間隔をあけてレイキャストする
+            if (Time.time < _lastRaycastTime + _intervalRaycast)
+                return;
+
+            // 最終レイキャスト時間を記録
+            _lastRaycastTime = Time.time;
+
+            // レイの始点と方向を決める
+            Vector3 rayPosition = transform.position + _rayOffset;
+            Ray ray = new Ray(rayPosition, Vector3.down);
+
+            RaycastHit hit;
+            bool isHit = Physics.SphereCast(
+                                ray,         // レイの始点と方向
+                                _radius,     // 半径
+                                out hit,     // 衝突判定結果
+                                _rayDistance,// レイの長さ
+                                _layerMask); // レイヤーマスク
+
+            // レイの衝突を検出
+            if (isHit)
+            {
+                // 衝突先の高さに合わせる
+                //Vector3 position = transform.position;
+                //position.y = hit.point.y;
+                //transform.position = position;
+
+                // レイの衝突時の高さを保存
+                _lastHitPositionY = hit.point.y;
+            }
+        }
+
+        /// <summary>
+        /// シーンギズモにSphereCastの様子を表示
+        /// </summary>
+        void OnDrawGizmos()
+        {
+            if (_isRaycast == false)
+                return;
+
+            // レイの始点と方向を決める
+            Vector3 rayPosition = transform.position + _rayOffset;
+            Ray ray = new Ray(rayPosition, Vector3.down);
+
+            RaycastHit hit;
+            bool isHit = Physics.SphereCast(
+                                ray,         // レイの始点と方向
+                                _radius,     // 半径
+                                out hit,     // 衝突判定結果
+                                _rayDistance,// レイの長さ
+                                _layerMask); // Layer mask
+            if (isHit)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawRay(rayPosition,
+                            -transform.up * hit.distance);
+                Gizmos.DrawWireSphere(
+                            rayPosition - transform.up * hit.distance,
+                            _radius);
+            }
+            else
+            {
+                Gizmos.color = Color.blue;
+                Gizmos.DrawRay(rayPosition,
+                                -transform.up * _rayDistance);
+            }
+        }
+
+        #endregion // Methods Move
+
+        #region Methods Camera
+
+        private void ControlCamera()
+        {
+            if (_useMouseRoll)
+            {
+                Vector3 diffAngles = new Vector3(
+                    x: -Input.GetAxis("Mouse Y"),
+                    y: Input.GetAxis("Mouse X")
+                ) * 3f;
+                _cameraMgr.Param.angles += diffAngles;
+            }
+        }
+        #endregion // #region Methods Camera
+    }
+}
