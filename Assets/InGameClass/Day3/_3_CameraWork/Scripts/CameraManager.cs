@@ -25,6 +25,33 @@ namespace CameraWork
 
             //追跡する被写体
             public Transform trackTarget;
+
+            public Parameter Clone()
+            {
+                return MemberwiseClone() as Parameter;
+            }
+
+            public static Parameter Lerp(Parameter a, Parameter b, float t, Parameter ret)
+            {
+                ret.position = Vector3.Lerp(a.position, b.position, t);
+                ret.angles = LerpAngles(a.angles, b.angles, t);
+                ret.distance = Mathf.Lerp(a.distance, b.distance, t);
+                ret.fieldOfView = Mathf.Lerp(a.fieldOfView, b.fieldOfView, t);
+                ret.offsetPosition = Vector3.Lerp(a.offsetPosition, b.offsetPosition, t);
+                ret.offsetAngles = LerpAngles(a.offsetAngles, b.offsetAngles, t);
+
+                return ret;
+            }
+
+            private static Vector3 LerpAngles(Vector3 a, Vector3 b, float t)
+            {
+                Vector3 ret = Vector3.zero;
+                ret.x = Mathf.LerpAngle(a.x, b.x, t);
+                ret.y = Mathf.LerpAngle(a.y, b.y, t);
+                ret.z = Mathf.LerpAngle(a.z, b.z, t);
+
+                return ret;
+            }
         }
 
         [SerializeField]
