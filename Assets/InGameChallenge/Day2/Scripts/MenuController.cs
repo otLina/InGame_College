@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
@@ -9,7 +10,13 @@ public class MenuController : MonoBehaviour
     GameObject button;
 
     [SerializeField]
-    GameObject panel;
+    GameObject buttonPanel;
+
+    public Color openButtonColor;
+    public Color closedButtonColor;
+
+    [SerializeField]
+    GameObject menuPanel;
 
     public enum MenuParam
     {
@@ -17,12 +24,12 @@ public class MenuController : MonoBehaviour
         isClosed
     }
 
-    public MenuParam param = MenuParam.isClosed;
+    public MenuParam param;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        param = MenuParam.isClosed;
     }
 
     // Update is called once per frame
@@ -35,15 +42,17 @@ public class MenuController : MonoBehaviour
     {
         if (param == MenuParam.isOpen)
         {
-            //アニメーション
-            panel.transform.DOScale(2f, 0.5f).SetEase(Ease.OutBounce);
-            //パラメータ変更
+            //?A?j???[?V????
+            menuPanel.transform.DOScale(0.0f, 0.5f).SetEase(Ease.OutBounce);
+            buttonPanel.GetComponent<Image>().DOColor(closedButtonColor, -1);
+            //?p?????[?^???X
             param = MenuParam.isClosed;
         } else if(param == MenuParam.isClosed)
         {
-            //アニメーション
-            panel.transform.DOScale(0f, 0.5f).SetEase(Ease.InBounce);
-            //パラメータ変更
+            //?A?j???[?V????
+            menuPanel.transform.DOScale(2.0f, 0.5f).SetEase(Ease.InBounce);
+            buttonPanel.GetComponent<Image>().DOColor(openButtonColor, -1);
+            //?p?????[?^???X
             param = MenuParam.isOpen;
         }
     }
