@@ -37,14 +37,15 @@ public class SlimeController : MonoBehaviour
 
         slimePos = slimeGroup.GetComponent<RectTransform>().localPosition;
 
+        //スライムのバウンドする動き
         slimeSequence.Append(slime.transform.DOScaleY(0.5f, 1.5f).SetEase(Ease.OutCubic))
             .Append(slime.transform.DOScaleY(2.0f, 0.5f).SetEase(Ease.OutCirc))
             .Insert(1.5f, slimeGroup.transform.DOLocalJump(
             endValue: slimePos,
-            jumpPower: 130.0f,
+            jumpPower: 150.0f,
             numJumps: 1,
-            duration: 1.0f
-            ));
+            duration: 1.37f
+            ).SetEase(Ease.OutBounce));
 
         slimeSequence.SetEase(Ease.OutFlash).SetLoops(-1, LoopType.Restart);
     }
@@ -59,20 +60,20 @@ public class SlimeController : MonoBehaviour
     {
         var sequence = DOTween.Sequence();
 
-        //?_???[?W????
+        //攻撃されたときの色変更
         slime.GetComponent<RawImage>().DOColor(
             attackedColor,
             0.3f
         ).SetEase(Ease.OutFlash, 2);
 
-        //?F???X
+        //攻撃されたときのエフェクト
         slimeGroup.transform.DOPunchScale(duration: 0.4f, punch: new Vector3(0.3f, 0.3f, 0.3f)).SetEase(Ease.OutElastic);
         
 
-        //?{???}?[?N?\??
+        //怒りマーク
         angerImage.transform.DOScale(0.7f, 0.25f).SetLoops(2, LoopType.Yoyo);
 
-        //?_???[?W???\??
+        //ダメージエフェクト
         /*Vector3 position = new Vector3(Random.Range(xMin, xMax), Random.Range(yMin, yMax), 0);
         Instantiate(damageGroup, position, Quaternion.identity, slimeGroup.transform);*/
         sequence.Append(damageGroup.transform.DOScale(1.5f, 0.3f))
@@ -81,7 +82,7 @@ public class SlimeController : MonoBehaviour
             .Append(damageGroup.transform.DOScale(0f, 0.1f));
         //Destroy(damageGroup);
 
-        //??????
+        //ダメージ数
         damageNum.GetComponent<TextMeshProUGUI>().text = Random.Range(100, 200).ToString();
     }
 
