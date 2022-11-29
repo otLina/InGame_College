@@ -979,6 +979,8 @@ MonoBehaviour:
   _useRigidbody: 0
   damageReceiver: {fileID: 1405117636}
   damageSender: {fileID: 1730311175}
+  enemyBodyRenderer: {fileID: 1405117630}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1405117636
 MonoBehaviour:
   m_ObjectHideFlags: 0
